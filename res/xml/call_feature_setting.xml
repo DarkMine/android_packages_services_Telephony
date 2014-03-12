@@ -113,6 +113,12 @@
 
   </PreferenceScreen>
 
+  <CheckBoxPreference
+      android:key="button_direct_call"
+      android:title="@string/direct_call_title"
+      android:summary="@string/direct_call_summary"
+      android:persistent="false" />
+
   <PreferenceCategory
       android:key="button_misc_category_key"
       android:title="@string/other_settings"
@@ -290,5 +296,4 @@
             android:persistent="false"
             android:defaultValue="true" />
     </PreferenceCategory>
-
 </PreferenceScreen>
