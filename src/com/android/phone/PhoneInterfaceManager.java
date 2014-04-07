@@ -70,7 +70,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
     private static final int CMD_END_CALL = 5;  // not used yet
     private static final int CMD_SILENCE_RINGER = 6;
     private static final int CMD_TOGGLE_LTE = 7; // not used yet
-    private static final int CMD_TOGGLE_STATE = 9;
 
     /** The singleton instance. */
     private static PhoneInterfaceManager sInstance;
@@ -178,10 +177,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     synchronized (request) {
                         request.notifyAll();
                     }
-                    break;
-
-                case CMD_TOGGLE_STATE:
-                    // nothing here
                     break;
 
                 default:
@@ -358,13 +353,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 mMainThreadHandler.obtainMessage(CMD_TOGGLE_LTE));
         android.provider.Settings.Global.putInt(mApp.getContentResolver(),
                 android.provider.Settings.Global.PREFERRED_NETWORK_MODE, network);
-    }
-
-    public void toggleMobileNetwork(int networkStatus) {
-        mPhone.setPreferredNetworkType(networkStatus,
-                mMainThreadHandler.obtainMessage(CMD_TOGGLE_STATE));
-        android.provider.Settings.Global.putInt(mApp.getContentResolver(),
-                android.provider.Settings.Global.PREFERRED_NETWORK_MODE, networkStatus);
     }
 
     private boolean showCallScreenInternal(boolean specifyInitialDialpadState,
